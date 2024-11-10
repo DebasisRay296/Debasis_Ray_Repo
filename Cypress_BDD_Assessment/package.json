@@ -1,0 +1,55 @@
+{
+  "name": "UI-Automation",
+  "version": "1.0.0",
+  "description": "UI BDD Automation ",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run --e2e --spec **/login.feature --headed",
+    "report": "node cypress.report.js",
+    "tags": "cypress run --env TAGS='@Login' --headed",
+    "run:test": "npx cypress run --headed --browser chrome",
+    "cy:parallel": "cypress-parallel -t 2 -d cypress/e2e/features/ -s run:test -m false",
+    "cy:parallel:tags": "cypress-parallel -t 2 -d cypress/e2e/features/ -s tags -m false",
+    "clean": "rm -rf cypress/downloads && rm -rf cypress/screenshots && rm -rf cypress/cucumber-json  && rm -rf cypress/reports && rm -rf cypress/fixtures && rm -rf .bin && rm -rf runner-results && rm -rf data && rm -rf multi-reporter-config.json && rm -rf cypress/multi-reporter-config && rm -rf cypress/videos",
+    "pretty": "prettier --write \"./**/*.{js,json,yml}\"",
+    "merge": "mochawesome-merge runner-results/*.json > overall-report/report.json",
+    "generate-report": "marge overall-report/report.json -f report -o overall-report/reports"
+  },
+  "keywords": [
+    "cypress",
+    "cucumber",
+    "report"
+  ],
+  "author": "siva.sajja",
+  "devDependencies": {
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "cypress": "^13.2.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-iframe": "^1.0.1",
+    "cypress-wait-until": "^2.0.1",
+    "cypress-xpath": "^2.0.1",
+    "esbuild": "^0.19.3",
+    "mochawesome-merge": "^4.3.0",
+    "prettier": "3.0.3"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/e2e/step_definitions/**/*.js",
+    "filterSpecs": true,
+    "omitFiltered": true,
+    "json": {
+      "enabled": true,
+      "formatter": ".bin/cucumber-json-formatter",
+      "output": "cypress/reports/json/cucumber-report.json"
+    },
+    "messages": {
+      "enabled": true,
+      "output": "cypress/reports/messages/cucumber-messages.ndjson"
+    }
+  },
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^18.0.5",
+    "cypress-parallel": "^0.13.0",
+    "dayjs": "^1.11.9",
+    "multiple-cucumber-html-reporter": "^3.5.0"
+  }
+}
