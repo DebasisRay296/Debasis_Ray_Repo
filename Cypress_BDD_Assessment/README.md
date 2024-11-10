@@ -62,5 +62,3 @@ npm run cy:parallel && npm run report
 ```shell
 npx cypress open
 ```
-
-### Who do I talk to? ###
