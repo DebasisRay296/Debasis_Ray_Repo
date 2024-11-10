@@ -38,6 +38,11 @@ Make sure you have installed the following prerequisites on your development mac
 
 ###  Executing The Tests ### 
 
+* or Download the ZIP file and Open the File in Terminal
+- Change the Directory
+```shell
+cd Cypress_BDD_Assessment
+```
 - Build the project
 
 ```shell
@@ -49,7 +54,7 @@ npm i
 - Run the test.
 
 ```shell
-npm run clean && npm run cy:parallel && npm run report
+npm run cy:parallel && npm run report
 ```
 
 - Open cypress runner
